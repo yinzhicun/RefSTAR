@@ -43,11 +43,6 @@ test/pretrained_models/
 
 > **Note**: The VAE and tokenizer are loaded from [stable-diffusion-v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5). Please ensure it is accessible (downloaded locally or available via HuggingFace cache).
 
-
-### Preparing Dataset
-
-TODO
-
 ### Testing
 
 To test the method, run the following command inside the `test/` directory:
@@ -76,6 +71,10 @@ CUDA_VISIBLE_DEVICES=0 python test.py \
 ```
 
 > **Note**: When `--detect_faces` is set to `False`, the input images are treated as pre-cropped face images. When set to `True`, faces will be automatically detected and restored within the full image.
+
+### Preparing Dataset
+
+TODO
 
 ### Training
 
