@@ -1,10 +1,11 @@
 # RefSTAR: Blind Facial Image Restoration with Reference Selection, Transfer, and Reconstruction
-
+<a href="https://ojs.aaai.org/index.php/AAAI/article/view/38194"><img src="https://img.shields.io/badge/AAAI-2026-blue.svg" height=22.5></a>
 <a href="https://arxiv.org/pdf/2507.10470"><img src="https://img.shields.io/badge/arXiv-2507.10470-b31b1b.svg" height=22.5></a>
 
 >**Abstract**: <br>
 > Blind facial image restoration is highly challenging due to unknown complex degradations and the sensitivity of humans to faces. Although existing methods introduce auxiliary information from generative priors or high-quality reference images, they still struggle with identity preservation problems, mainly due to improper feature introduction on detailed textures. In this paper, we focus on effectively incorporating appropriate features from high-quality reference images, presenting a novel blind facial image restoration method that considers reference selection, transfer, and reconstruction (RefSTAR). In terms of selection, we construct a reference selection (RefSel) module. For training the RefSel module, we construct a RefSel-HQ dataset through a mask generation pipeline, which contains annotating masks for 10,000 ground truth-reference pairs. As for the transfer, due to the trivial solution in vanilla crossattention operations, a feature fusion paradigm is designed to force the features from the reference to be integrated. Finally, we propose a reference image reconstruction mechanism that further ensures the presence of reference image features in the output image. The cycle consistency loss is also redesigned in conjunction with the mask. Extensive experiments on various backbone models demonstrate superior performance, showing better identity preservation ability and reference feature transfer quality.
-![method](assets/method.pdf)
+
+![method](assets/method.png)
 
 
 ## Getting Started
@@ -76,18 +77,21 @@ CUDA_VISIBLE_DEVICES=0 python test.py \
 
 > **Note**: When `--detect_faces` is set to `False`, the input images are treated as pre-cropped face images. When set to `True`, faces will be automatically detected and restored within the full image.
 
-<!-- ### Training
+### Training
 
-Training code will be released soon. -->
+Training code will be released soon.
 
 ## Citation
 
 ```
-@article{yin2025refstar,
-  title={RefSTAR: Blind Facial Image Restoration with Reference Selection, Transfer, and Reconstruction},
+@inproceedings{yin2026refstar,
+  title={RefSTAR: Blind Face Image Restoration with Reference Selection, Transfer, and Reconstruction},
   author={Yin, Zhicun and Chen, Junjie and Liu, Ming and Wang, Zhixin and Li, Fan and Pei, Renjing and Li, Xiaoming and Lau, Rynson WH and Zuo, Wangmeng},
-  journal={arXiv preprint arXiv:2507.10470},
-  year={2025}
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={40},
+  number={14},
+  pages={12053--12062},
+  year={2026}
 }
 ```
 
