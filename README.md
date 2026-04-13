@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ### Pretrained Models
 
-We provide the pretrained checkpoints in [BaiduDisk](https://pan.baidu.com/s/1lh8TizeXEP3Jq5nl_E5djA?pwd=m8gj) and [Google Drive](TODO). Download and place them into the `test/pretrained_models/` directory. The expected structure is:
+We provide the pretrained checkpoints in [BaiduDisk](https://pan.baidu.com/s/1lh8TizeXEP3Jq5nl_E5djA?pwd=m8gj) and [Google Drive](https://drive.google.com/drive/folders/1-PW53efDRvFpxFhnHyl20lEKVW1jAF59?usp=sharing). Download and place them into the `test/pretrained_models/` directory. The expected structure is:
 
 ```
 test/pretrained_models/
