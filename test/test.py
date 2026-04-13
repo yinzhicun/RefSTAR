@@ -122,7 +122,16 @@ def main():
         img_L = np.array(img_L)
         # print(img_L.shape)
 
-        img_ref_L = Image.open(os.path.join(Ref_path, img_name+'.png'))
+        ref_img_path = None
+        for ext_option in ['.png', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG']:
+            potential_path = os.path.join(Ref_path, img_name + ext_option)
+            if os.path.exists(potential_path):
+                ref_img_path = potential_path
+                break
+        if ref_img_path is None:
+            logger.warning(f'Reference image not found for {img_name}')
+            continue
+        img_ref_L = Image.open(ref_img_path)
 
         img_ref_L = ImageOps.exif_transpose(img_ref_L)
         img_ref_L = img_ref_L.convert('RGB')

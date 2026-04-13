@@ -1,0 +1,28 @@
+26-04-13 17:49:18.710 :       Input Path : /home/m/data0/yzc/data/iccv_ref_test/lq_512
+26-04-13 17:49:18.710 :      Output Path : output
+26-04-13 17:49:18.710 : ---1 --> test_face_only --> x1--> 041.png
+26-04-13 17:49:32.387 : ------> Average runtime of (/home/m/data0/yzc/data/iccv_ref_test/lq_512) is : 13.488688 seconds
+26-04-13 17:49:32.387 : ---2 --> test_face_only --> x1--> 042.png
+26-04-13 17:49:33.611 : ------> Average runtime of (/home/m/data0/yzc/data/iccv_ref_test/lq_512) is : 7.248934 seconds
+26-04-13 17:49:33.611 : ---3 --> test_face_only --> x1--> 043.png
+26-04-13 17:49:34.819 : ------> Average runtime of (/home/m/data0/yzc/data/iccv_ref_test/lq_512) is : 5.203705 seconds
+26-04-13 17:49:34.820 : ---4 --> test_face_only --> x1--> 044.png
+26-04-13 17:53:21.182 :       Input Path : /home/m/data0/yzc/data/iccv_ref_test/lq_512
+26-04-13 17:53:21.182 :      Output Path : output
+26-04-13 17:53:21.183 : ---1 --> test_face_only --> x1--> 041.png
+26-04-13 17:54:31.887 :       Input Path : /home/m/data0/yzc/data/IILFace/0/input
+26-04-13 17:54:31.888 :      Output Path : output
+26-04-13 17:54:31.888 : ---1 --> test_face_only --> x1--> 000.jpg
+26-04-13 17:57:43.797 :       Input Path : /home/m/data0/yzc/data/IILFace/0/input
+26-04-13 17:57:43.797 :      Output Path : output
+26-04-13 17:57:43.798 : ---1 --> test_face_only --> x1--> 000.jpg
+26-04-13 17:58:20.332 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 35.616235 seconds
+26-04-13 17:58:20.333 : ---2 --> test_face_only --> x1--> 001.jpg
+26-04-13 17:58:23.976 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 19.141327 seconds
+26-04-13 17:58:23.977 : ---3 --> test_face_only --> x1--> 002.jpg
+26-04-13 17:58:28.085 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 13.689617 seconds
+26-04-13 17:58:28.086 : ---4 --> test_face_only --> x1--> 003.jpg
+26-04-13 17:58:32.479 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 11.006860 seconds
+26-04-13 17:58:32.479 : ---5 --> test_face_only --> x1--> 004.jpg
+26-04-13 17:58:35.984 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 9.312443 seconds
+26-04-13 17:58:35.985 : ---6 --> test_face_only --> x1--> 005.jpg
