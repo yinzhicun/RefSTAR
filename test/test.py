@@ -52,8 +52,8 @@ def main():
     parser = argparse.ArgumentParser()
    
     parser.add_argument('--detect_faces', type=str2bool, default=False)
-    parser.add_argument('--testsets', type=str, default=None)
-    parser.add_argument('--testsets_ref', type=str, default=None)
+    parser.add_argument('--testsets', type=str, default='/home/m/data3/yzc/data/Face_Ref_Test/input')
+    parser.add_argument('--testsets_ref', type=str, default='/home/m/data3/yzc/data/Face_Ref_Test/ref')
 
     parser.add_argument('--FaceModel', type=str, default='RefSTAR')
     parser.add_argument('--ModelPath', type=str, default=None)
@@ -119,6 +119,10 @@ def main():
         img_L = Image.open(img)
         img_L = ImageOps.exif_transpose(img_L)
         img_L = img_L.convert('RGB')
+        original_size = img_L.size
+        img_L = img_L.resize((32, 32), Image.BILINEAR)
+        img_L = img_L.resize((512, 512), Image.BILINEAR)
+
         img_L = np.array(img_L)
         # print(img_L.shape)
 

@@ -74,11 +74,30 @@ CUDA_VISIBLE_DEVICES=0 python test.py \
 
 ### Preparing Dataset
 
-TODO
+The training dataloader expects a multi-image face dataset organized by identity. The provided training configs use:
+
+- `dataroot_id`: `/home/m/data0/yzc/data/CelebHQRefForRelease`
+- `dataroot_lm_id`: `/home/m/data0/yzc/data/CelebRef-HQ512_landmark`
+
+Each identity is stored in a separate subfolder. For a given identity, `CelebHQRefForRelease/<id>/` contains the 512×512 face images and `CelebRef-HQ512_landmark/<id>/` contains the corresponding 68-point landmark `.txt` files (same filenames, different extension). Update the dataset paths in `train/train_phase1_512.yml` and `train/train_phase2_512.yml` if your data is located elsewhere.
 
 ### Training
 
-Training code will be released soon.
+RefSTAR is trained in two stages. All training code and configs are under `train/`:
+
+- `train/train.py` — entry point
+- `train/refstar/` — model / data / arch / loss package trimmed to the two released configs
+- `train/train_phase1_512.yml` and `train/train_phase2_512.yml` — released training configs
+
+See `train/README.md` for full details, including required pretrained files.
+
+```shell
+# Phase 1
+python -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 train/train.py -opt train/train_phase1_512.yml --launcher pytorch --auto_resume
+
+# Phase 2 (set pretrain_network_g/pretrain_network_d to the phase-1 outputs first)
+python -m torch.distributed.launch --nproc_per_node=4 --master_port=29500 train/train.py -opt train/train_phase2_512.yml --launcher pytorch --auto_resume
+```
 
 ## Citation
 

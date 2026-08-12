@@ -1,0 +1,197 @@
+# general settings
+name: RefSTAR_phase2_512
+model_type: SDPhase2Model
+
+num_gpu: auto  # officially, we use 4 GPUs
+scale: 1
+print_net: True
+
+tmp_vis_save_dir: tmp_train_results_refstar_phase2_512
+multiscale_discriminator: False
+only_one_order_degradation: False
+use_poisson_noise: True
+
+higher_ref_degradation: False
+higher_input_degradation: False
+
+l1_cycle_loss_weight: 5
+percep_cycle_loss_weight: 2.5
+style_cycle_loss_weight: 2.5
+id_cycle_loss_weight: 2.5
+gan_cycle_loss_weight: 1.5
+
+l1_gt_usm: False
+percep_gt_usm: False
+gan_gt_usm: False
+
+# the first degradation process
+resize_prob: [0.2, 0.7, 0.1]  # up, down, keep
+resize_range: [0.15, 0.25]    # default: [0.15, 1.5]
+gaussian_noise_prob: 0.5
+noise_range: [1, 10]
+poisson_scale_range: [0.05, 3]
+gray_noise_prob: 0.9    # default: 0.4
+jpeg_range: [30, 70]   # default: [30, 95]
+impulse_replace_frac_range: [0, 0.01]
+# the second degradation process
+second_blur_prob: 0.8
+resize_prob2: [0.3, 0.4, 0.3]  # up, down, keep
+resize_range2: [0.01, 0.05]
+gaussian_noise_prob2: 0.5
+noise_range2: [1, 10]
+poisson_scale_range2: [0.05, 2.5]
+gray_noise_prob2: 0.9   # default: 0.4
+jpeg_range2: [30, 95]
+impulse_replace_frac_range2: [0, 0.01]
+
+gt_size: 512
+queue_size: 120
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: CelebRefHQ
+    type: RefDegradationDataset
+    dataroot_id: data/CelebHQRefForRelease
+    dataroot_lm_id: data/CelebRef-HQ512_landmark
+    io_backend:
+      type: disk
+
+    blur_kernel_size: 21
+    kernel_list: ['motion', 'defocus', 'iso', 'aniso', 'generalized_iso', 'generalized_aniso', 'plateau_iso', 'plateau_aniso']
+    kernel_prob: [0.2, 0.1, 0.25, 0.15, 0.12, 0.03, 0.12, 0.03]
+    sinc_prob: 0.1
+    blur_sigma: [1, 20]
+    betag_range: [0.5, 4]
+    betap_range: [1, 2]
+    motion_stdev: [1, 9]
+    motion_mode_list: ['gaussian', 'line']
+    motion_mode_prob: [0.5, 0.5]
+
+    blur_kernel_size2: 21
+    kernel_list2: ['motion', 'defocus','iso', 'aniso', 'generalized_iso', 'generalized_aniso', 'plateau_iso', 'plateau_aniso']
+    kernel_prob2: [0.2, 0.1, 0.25, 0.25, 0.12, 0.03, 0.12, 0.03]
+    sinc_prob2: 0.1
+    blur_sigma2: [1, 8]
+    betag_range2: [0.5, 4]
+    betap_range2: [1, 2]
+    motion_stdev2: [1, 9]
+    motion_mode_list2: ['gaussian', 'line']
+    motion_mode_prob2: [0.5, 0.5]
+    final_sinc_prob: 0.8
+
+    gt_size: 512
+    use_hflip: True
+    use_rot: False
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 3
+    batch_size_per_gpu: 2
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+# network structures
+network_g:
+  type: SD_Ref_Dual
+
+network_d:
+  type: NScaleSNDiscriminator
+
+# path
+path:
+  pretrain_network_g: ~  # Set to the phase-1 output, e.g. experiments/RefSTAR_phase1_512/models/net_g_xxx.pth
+  pretrain_network_d: ~  # Set to the phase-1 output, e.g. experiments/RefSTAR_phase1_512/models/net_d_xxx.pth
+  strict_load_g: False
+  strict_load_d: True
+  strict_load_w: True
+
+  # resume
+  resume_state: ~
+
+
+# training settings
+train:
+  optim_g:
+    type: AdamW
+    lr: !!float 2e-5
+  optim_d:
+    type: AdamW
+    lr: !!float 1e-5
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [50000, 120000]
+    gamma: 0.5
+
+  total_iter: 300000
+  warmup_iter: -1  # no warm up
+
+  pixel_opt:
+    type: L1Loss
+    loss_weight: !!float 1.0
+    reduction: mean
+
+
+  # perceptual loss (content and style losses)
+  perceptual_opt:
+    type: PerceptualLoss
+    layer_weights:
+      # before relu
+      'conv1_2': 0.1
+      'conv2_2': 0.1
+      'conv3_4': 1
+      'conv4_4': 1
+      'conv5_4': 1
+    vgg_type: vgg19
+    use_input_norm: true
+    perceptual_weight: !!float 1
+    style_weight: 20
+    range_norm: true
+    criterion: l1
+
+  id_opt:
+    type: IDLoss
+    loss_weight: !!float 1.0
+
+  # gan loss
+  gan_opt:
+    type: GANLoss
+    gan_type: hinge
+    real_label_val: 1.0
+    fake_label_val: 0.0
+    loss_weight: !!float 0.2
+  # r1 regularization for discriminator
+  r1_reg_weight: 10
+
+  net_d_iters: 1
+  net_d_init_iters: 0
+  net_d_reg_every: 16
+
+# validation settings
+val:
+  val_freq: !!float 5e3
+  save_img: true
+
+  metrics:
+    psnr: # metric name
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+
+# logging settings
+logger:
+  print_freq: 1
+  save_checkpoint_freq: !!float 2000
+  use_tb_logger: true
+  visual_freq: 200
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
+
+find_unused_parameters: true

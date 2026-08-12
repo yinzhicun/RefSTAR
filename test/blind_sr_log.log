@@ -26,3 +26,27 @@
 26-04-13 17:58:32.479 : ---5 --> test_face_only --> x1--> 004.jpg
 26-04-13 17:58:35.984 : ------> Average runtime of (/home/m/data0/yzc/data/IILFace/0/input) is : 9.312443 seconds
 26-04-13 17:58:35.985 : ---6 --> test_face_only --> x1--> 005.jpg
+26-04-17 22:05:10.225 :       Input Path : /home/m/data3/yzc/data/Face_Ref_Test/input
+26-04-17 22:05:10.226 :      Output Path : output
+26-04-17 22:05:10.226 : ---1 --> test_face_only --> x1--> 146.png
+26-04-17 22:05:10.260 : Reference image not found for 146
+26-04-17 22:07:14.111 :       Input Path : /home/m/data3/yzc/data/Face_Ref_Test/input
+26-04-17 22:07:14.111 :      Output Path : output
+26-04-17 22:07:14.112 : ---1 --> test_face_only --> x1--> 146.png
+26-04-17 22:07:32.032 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 17.768495 seconds
+26-04-17 22:14:14.160 :       Input Path : /home/m/data3/yzc/data/Face_Ref_Test/input
+26-04-17 22:14:14.161 :      Output Path : output
+26-04-17 22:14:14.161 : ---1 --> test_face_only --> x1--> 1.png
+26-04-17 22:14:25.836 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 11.432757 seconds
+26-04-17 22:14:25.836 : ---2 --> test_face_only --> x1--> 146.png
+26-04-17 22:14:27.477 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 6.412482 seconds
+26-04-17 22:14:27.477 : ---3 --> test_face_only --> x1--> 2.png
+26-04-17 22:14:29.270 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 4.806822 seconds
+26-04-17 22:16:26.185 :       Input Path : /home/m/data3/yzc/data/Face_Ref_Test/input
+26-04-17 22:16:26.186 :      Output Path : output
+26-04-17 22:16:26.186 : ---1 --> test_face_only --> x1--> 1.png
+26-04-17 22:16:37.070 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 10.670527 seconds
+26-04-17 22:16:37.071 : ---2 --> test_face_only --> x1--> 146.png
+26-04-17 22:16:38.548 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 6.015664 seconds
+26-04-17 22:16:38.549 : ---3 --> test_face_only --> x1--> 2.png
+26-04-17 22:16:39.990 : ------> Average runtime of (/home/m/data3/yzc/data/Face_Ref_Test/input) is : 4.443280 seconds
