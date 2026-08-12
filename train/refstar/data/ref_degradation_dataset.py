@@ -17,20 +17,7 @@ from torchvision.transforms.functional import (adjust_brightness, adjust_contras
                                                normalize)
 @DATASET_REGISTRY.register()
 class RefDegradationDataset(data.Dataset):
-    """FFHQ dataset for GFPGAN.
-
-    It reads high resolution images, and then generate low-quality (LQ) images on-the-fly.
-
-    Args:
-        opt (dict): Config for train datasets. It contains the following keys:
-            dataroot_gt (str): Data root path for gt.
-            io_backend (dict): IO backend type and other kwarg.
-            mean (list | tuple): Image mean.
-            std (list | tuple): Image std.
-            use_hflip (bool): Whether to horizontally flip.
-            Please see more options in the codes.
-    """
-
+   
     def __init__(self, opt):
         super(RefDegradationDataset, self).__init__()
 
@@ -92,18 +79,6 @@ class RefDegradationDataset(data.Dataset):
         self.kernel_range = [2 * v + 1 for v in range(3, 11)]  # kernel size ranges from 7 to 21
         self.pulse_tensor = torch.zeros(21, 21).float()  # convolving with pulse tensor brings no blurry effect
         self.pulse_tensor[10, 10] = 1
-
-
-        
-
-
-
-
-
-
-
-
-
 
     def get_part_location(self, landmarkpath, gt_path, downscale=1, w_offset=0, h_offset=0, resize=1024, flip=0):
         Landmarks = []

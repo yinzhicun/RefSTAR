@@ -40,7 +40,6 @@ def check_landmarks(img, landmarks):
 
 @MODEL_REGISTRY.register()
 class SDModel(BaseModel):
-    """U-Net structure SR GAN model for single image super-resolution."""
 
     def __init__(self, opt):
         super(SDModel, self).__init__(opt)

@@ -10,9 +10,6 @@ from torchvision.transforms._functional_tensor import rgb_to_grayscale
 
 from kornia.geometry.transform import rotate
 
-
-
-
 def sigma_matrix2(sig_x, sig_y, theta):
     """Calculate the rotated sigma matrix (two dimensional matrix).
 
