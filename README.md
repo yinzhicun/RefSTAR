@@ -1,3 +1,5 @@
+
+
 # RefSTAR: Blind Facial Image Restoration with Reference Selection, Transfer, and Reconstruction
 <a href="https://ojs.aaai.org/index.php/AAAI/article/view/38194"><img src="https://img.shields.io/badge/AAAI-2026-blue.svg" height=22.5></a>
 <a href="https://arxiv.org/pdf/2507.10470"><img src="https://img.shields.io/badge/arXiv-2507.10470-b31b1b.svg" height=22.5></a>
@@ -88,6 +90,8 @@ RefSTAR is trained in two stages. All training code and configs are under `train
 - `train/train.py` — entry point
 - `train/refstar/` — model / data / arch / loss package trimmed to the two released configs
 - `train/train_phase1_512.yml` and `train/train_phase2_512.yml` — released training configs
+
+Run the following commands from the repository root.
 
 See `train/README.md` for full details, including required pretrained files.
 
